@@ -18,7 +18,6 @@ import {
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-gray-800 p-4 md:p-8 font-sans">
-      {/* This section centers all your content */}
       <section className="max-w-4xl mx-auto">
         
         {/* Header */}
@@ -43,8 +42,9 @@ export default function Home() {
               );
             })}
           </div>
+          {/* This is the corrected blockquote section */}
           <blockquote className="italic text-xl text-indigo-800 border-l-4 border-indigo-500 pl-4">
-            "Not Just Building Apps — Building Audiences."
+            &quot;Not Just Building Apps — Building Audiences.&quot;
           </blockquote>
         </header>
 
