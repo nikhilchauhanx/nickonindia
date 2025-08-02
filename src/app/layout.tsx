@@ -1,7 +1,7 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script"; // 1. Import the Script component
+import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    url: "https://www.nickonindia.com/",
+    // The 'url' property was removed from here as it's not allowed
     title: "Nickon India | Full Stack Developer & Creator",
     description: "Portfolio of Nikhil Chauhan (Nickon India), a Full Stack Developer, YouTuber, and Streamer specializing in the MERN Stack.",
     images: ["https://www.nickonindia.com/hero-banner.jpg"],
@@ -36,7 +36,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* 2. Use the Next.js Script component instead of a regular <script> tag */}
         <Script src="https://cdn.tailwindcss.com" strategy="beforeInteractive" />
       </head>
       <body className={inter.className}>{children}</body>
