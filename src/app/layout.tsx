@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import GoogleAnalytics from "../components/analytics/GoogleAnalytics"; // Import the Analytics component
+import GoogleAnalytics from "../components/analytics/GoogleAnalytics";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,7 +23,8 @@ export const metadata: Metadata = {
     "Web Developer India",
   ],
   verification: {
-    google: "google8445a629d84c8bda",
+    // The correct verification code has been added.
+    google: "cykNGbexAWlFhK9OdQSSG2lYoJE3TGWXstwjPxisFh4",
   },
   openGraph: {
     type: "website",
@@ -52,7 +53,6 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         {children}
-        {/* Add the Google Analytics component here */}
         <GoogleAnalytics />
       </body>
     </html>
