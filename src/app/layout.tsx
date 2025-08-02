@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import GoogleAnalytics from "../components/analytics/GoogleAnalytics";
+import GoogleAnalytics from "../components/analytics/GoogleAnalytics"; // Import the Analytics component
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,7 +23,6 @@ export const metadata: Metadata = {
     "Web Developer India",
   ],
   verification: {
-    // The correct verification code has been added.
     google: "cykNGbexAWlFhK9OdQSSG2lYoJE3TGWXstwjPxisFh4",
   },
   openGraph: {
@@ -50,10 +49,11 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <Script src="https://cdn.tailwindcss.com" strategy="beforeInteractive" />
+        {/* The Google Analytics component is now correctly placed in the head */}
+        <GoogleAnalytics />
       </head>
       <body className={inter.className}>
         {children}
-        <GoogleAnalytics />
       </body>
     </html>
   );
