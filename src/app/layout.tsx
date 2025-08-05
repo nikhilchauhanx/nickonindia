@@ -61,7 +61,8 @@ const jsonLd = {
     "name": "Nickon India"
   },
   "description": "Nikhil Chauhan aka Nickon India is a Full Stack Developer, YouTuber, and Digital Creator based in Noida, India.",
-  "email": "mailto:nikhilchauhan0618@gmail.com",
+  // The "mailto:" prefix has been removed from the email address.
+  "email": "nikhilchauhan0618@gmail.com",
   "alumniOf": {
     "@type": "CollegeOrUniversity",
     "name": "Amity University"
