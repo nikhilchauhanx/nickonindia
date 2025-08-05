@@ -1,11 +1,16 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import nextFontLocal from "next/font/local"; // 1. Import the local font loader
 import Script from "next/script";
 import GoogleAnalytics from "../components/analytics/GoogleAnalytics";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+// 2. Configure the local font with the corrected filename
+const inter = nextFontLocal({
+  src: '../fonts/Inter-VariableFont_opsz,wght.ttf',
+  display: 'swap',
+  variable: '--font-inter', // Optional: for use in CSS
+});
 
 export const metadata: Metadata = {
   title: "Nikhil Chauhan | Portfolio",
@@ -40,7 +45,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Define the JSON-LD schema data
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -61,7 +65,6 @@ const jsonLd = {
     "name": "Nickon India"
   },
   "description": "Nikhil Chauhan aka Nickon India is a Full Stack Developer, YouTuber, and Digital Creator based in Noida, India.",
-  // The "mailto:" prefix has been removed from the email address.
   "email": "nikhilchauhan0618@gmail.com",
   "alumniOf": {
     "@type": "CollegeOrUniversity",
@@ -79,12 +82,12 @@ export default function RootLayout({
       <head>
         <Script src="https://cdn.tailwindcss.com" strategy="beforeInteractive" />
         <GoogleAnalytics />
-        {/* Add the JSON-LD script to the head */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
+      {/* 3. Apply the font class to the body */}
       <body className={inter.className}>
         {children}
       </body>
