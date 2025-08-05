@@ -4,11 +4,11 @@
 import React from "react";
 import Section from "../components/Section";
 import ProjectCard from "../components/ProjectCard";
-import AnimatedSection from "../components/AnimatedSection"; // 1. Import the new component
+import AnimatedSection from "../components/AnimatedSection";
+import SkillsGrid from "../components/SkillsGrid"; // 1. Import the new SkillsGrid component
 import {
   socialLinks,
   professionalSummary,
-  technicalSkills,
   projects,
   experience,
   education,
@@ -21,7 +21,7 @@ export default function Home() {
     <main className="min-h-screen bg-white text-gray-800 p-4 md:p-8 font-sans">
       <section className="max-w-4xl mx-auto">
         
-        {/* Header (We won't animate this so it appears instantly) */}
+        {/* Header */}
         <header className="mb-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-2">Nikhil Chauhan <span className="text-indigo-600">aka Nickon India</span></h1>
           <p className="text-lg md:text-xl mb-6">Full Stack Developer · Digital Creator · YouTuber · Streamer</p>
@@ -48,25 +48,16 @@ export default function Home() {
           </blockquote>
         </header>
 
-        {/* 2. Wrap each section with the AnimatedSection component */}
         <AnimatedSection>
           <Section title="Professional Summary">
             <p>{professionalSummary}</p>
           </Section>
         </AnimatedSection>
 
+        {/* 2. Replace the old skills list with the new SkillsGrid component */}
         <AnimatedSection>
           <Section title="Technical Skills">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {Object.entries(technicalSkills).map(([category, skills]) => (
-                <div key={category}>
-                  <h3 className="font-semibold text-md mb-1">{category}</h3>
-                  <ul className="list-disc list-inside">
-                    {skills.map(skill => <li key={skill}>{skill}</li>)}
-                  </ul>
-                </div>
-              ))}
-            </div>
+            <SkillsGrid />
           </Section>
         </AnimatedSection>
 

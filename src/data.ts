@@ -1,8 +1,16 @@
 // src/data.ts
 import { IconType } from "react-icons";
-import { FaGithub, FaLinkedin, FaInstagram, FaYoutube, FaEnvelope, FaPhone, FaTwitch, FaMedium } from "react-icons/fa";
+import { 
+  FaGithub, FaLinkedin, FaInstagram, FaYoutube, FaEnvelope, FaPhone, FaTwitch, FaMedium,
+  FaReact, FaNodeJs, FaGitAlt, FaDocker, FaHtml5, FaCss3Alt 
+} from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { SiLeetcode } from "react-icons/si";
+import { 
+  SiLeetcode, SiJavascript, SiTypescript, SiNextdotjs, SiRedux, 
+  SiTailwindcss, SiStyledcomponents, SiExpress, SiMongodb, SiPostgresql, 
+  SiMysql, SiGraphql, SiPrisma, SiVercel, SiNetlify, SiPostman, SiSupabase 
+} from "react-icons/si";
+
 
 // --- TYPE DEFINITIONS ---
 
@@ -43,6 +51,12 @@ interface Education {
     duration: string;
 }
 
+// New type for individual skills with icons
+interface Skill {
+  name: string;
+  icon: IconType;
+}
+
 // --- DATA EXPORTS ---
 
 export const socialLinks: SocialLink[] = [
@@ -60,34 +74,39 @@ export const socialLinks: SocialLink[] = [
 
 export const professionalSummary: string = "Full Stack Developer skilled in React.js, Node.js, and MongoDB with a solid foundation in JavaScript and web architecture. Transitioned from test automation to development. Delivered 5+ real-world projects and solved 100+ DSA problems. Passionate about performance, clean code, and scalable systems.";
 
-export const technicalSkills: Record<string, string[]> = {
+// --- UPGRADED technicalSkills OBJECT ---
+export const technicalSkills: Record<string, Skill[]> = {
   "Frontend Development": [
-    "JavaScript (ESNext), TypeScript, HTML5, CSS3",
-    "React.js, Next.js (14+)",
-    "State Management (Redux Toolkit, Zustand)",
-    "Styling (Tailwind CSS, Styled-Components)",
+    { name: "JavaScript (ESNext)", icon: SiJavascript },
+    { name: "TypeScript", icon: SiTypescript },
+    { name: "React.js", icon: FaReact },
+    { name: "Next.js (14+)", icon: SiNextdotjs },
+    { name: "Redux Toolkit", icon: SiRedux },
+    { name: "Tailwind CSS", icon: SiTailwindcss },
+    { name: "Styled-Components", icon: SiStyledcomponents },
+    { name: "HTML5", icon: FaHtml5 },
+    { name: "CSS3", icon: FaCss3Alt },
   ],
   "Backend Development": [
-    "Node.js (LTS), Express.js",
-    "MongoDB (with Mongoose), PostgreSQL, MySQL",
-    "RESTful APIs, GraphQL (Basic)",
-    "ORMs (Mongoose, Prisma)",
+    { name: "Node.js", icon: FaNodeJs },
+    { name: "Express.js", icon: SiExpress },
+    { name: "MongoDB", icon: SiMongodb },
+    { name: "PostgreSQL", icon: SiPostgresql },
+    { name: "MySQL", icon: SiMysql },
+    { name: "Supabase", icon: SiSupabase },
+    { name: "RESTful APIs", icon: SiGraphql }, // Using GraphQL as a representative icon
+    { name: "Prisma", icon: SiPrisma },
   ],
   "Developer Tools & Platforms": [
-    "Git, GitHub (Gitflow Workflow)",
-    "Docker, Docker Compose, Containerization",
-    "CI/CD with GitHub Actions",
-    "Vercel, Netlify, Railway, Postman",
-  ],
-  "Core Concepts & Paradigms": [
-    "MVC Architecture, Microservices (Familiarity)",
-    "Authentication (JWT, OAuth 2.0)",
-    "Web Security Fundamentals (CORS, Hashing)",
-    "OOP & Functional Programming Concepts",
+    { name: "Git", icon: FaGitAlt },
+    { name: "GitHub", icon: FaGithub },
+    { name: "Docker", icon: FaDocker },
+    { name: "Vercel", icon: SiVercel },
+    { name: "Netlify", icon: SiNetlify },
+    { name: "Postman", icon: SiPostman },
   ],
 };
 
-// --- UPGRADED PROJECTS ARRAY ---
 export const projects: Project[] = [
   {
     title: "Xenzy Thrift Store",
@@ -143,7 +162,7 @@ export const projects: Project[] = [
             "A simple MongoDB schema was used to persist chat history, allowing users to view past conversations upon logging in."
         ],
         challenges: "Managing state on the client-side in a real-time environment was the biggest challenge. Ensuring the UI updated instantly for all users in a group chat without causing performance issues required careful state management. Another hurdle was efficiently handling socket connection and disconnection events to accurately track which users were online.",
-        learnings: "This project was an excellent lesson in event-driven architecture. I gained a strong understanding of the WebSocket protocol and the intricacies of real-time communication. It taught me how to think about application state differently, focusing on broadcasting and listening for events rather than traditional request-response cycles."
+        learnings: "This project was an excellent lesson in event-driven architecture. I gained a strong understanding of the WebSocket protocol and the intricacies of a real-time communication. It taught me how to think about application state differently, focusing on broadcasting and listening for events rather than traditional request-response cycles."
     }
   },
 ];
