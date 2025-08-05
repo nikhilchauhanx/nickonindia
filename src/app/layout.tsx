@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import GoogleAnalytics from "../components/analytics/GoogleAnalytics"; // Import the Analytics component
+import GoogleAnalytics from "../components/analytics/GoogleAnalytics";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -40,6 +40,34 @@ export const metadata: Metadata = {
   },
 };
 
+// Define the JSON-LD schema data
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Nikhil Chauhan",
+  "alternateName": "Nickon India",
+  "url": "https://nickonindia.com",
+  "image": "https://res.cloudinary.com/dxlz9c5xr/image/upload/v1753192708/nickonindia.jpg",
+  "sameAs": [
+    "https://www.youtube.com/@NickonIndia",
+    "https://www.instagram.com/nickon.india",
+    "https://twitter.com/NickonIndia",
+    "https://github.com/nikhilchauhanx",
+    "https://www.linkedin.com/in/nikhilchauhan186/"
+  ],
+  "jobTitle": "Full Stack Developer, YouTuber, Digital Creator",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Nickon India"
+  },
+  "description": "Nikhil Chauhan aka Nickon India is a Full Stack Developer, YouTuber, and Digital Creator based in Noida, India.",
+  "email": "mailto:nikhilchauhan0618@gmail.com",
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Amity University"
+  }
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -49,8 +77,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <Script src="https://cdn.tailwindcss.com" strategy="beforeInteractive" />
-        {/* The Google Analytics component is now correctly placed in the head */}
         <GoogleAnalytics />
+        {/* Add the JSON-LD script to the head */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className={inter.className}>
         {children}
