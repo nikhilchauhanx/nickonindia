@@ -25,5 +25,8 @@ export default {
       },
     },
   },
-  plugins: [],
+  // The new typography plugin is added here
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 } satisfies Config

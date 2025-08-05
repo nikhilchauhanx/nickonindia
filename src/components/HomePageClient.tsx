@@ -1,5 +1,5 @@
 // src/components/HomePageClient.tsx
-'use client'; // This component handles all the client-side animations.
+'use client';
 
 import React from "react";
 import Section from "./Section";
@@ -8,7 +8,7 @@ import AnimatedSection from "./AnimatedSection";
 import SkillsGrid from "./SkillsGrid";
 import TestimonialCard from "./TestimonialCard";
 import {
-  socialLinks,
+  socialLinks, // Re-import socialLinks
   professionalSummary,
   projects,
   experience,
@@ -18,13 +18,13 @@ import {
   testimonials
 } from "../data";
 
-// This component now accepts the GitHub card as a prop
 export default function HomePageClient({ gitHubActivityCard }: { gitHubActivityCard: React.ReactNode }) {
   return (
-    <section className="max-w-4xl mx-auto">
+    // Add top padding (pt-16) to push content down from the sticky header
+    <section className="max-w-4xl mx-auto pt-16">
       
-      {/* Header */}
-      <header className="mb-10">
+      {/* The Hero section is now back on the homepage */}
+      <section className="mb-10">
         <h1 className="text-4xl md:text-5xl font-bold mb-2">Nikhil Chauhan <span className="text-indigo-600">aka Nickon India</span></h1>
         <p className="text-lg md:text-xl mb-6">Full Stack Developer · Digital Creator · YouTuber · Streamer</p>
         <a
@@ -48,7 +48,7 @@ export default function HomePageClient({ gitHubActivityCard }: { gitHubActivityC
         <blockquote className="italic text-xl text-indigo-800 border-l-4 border-indigo-500 pl-4">
           &quot;Not Just Building Apps — Building Audiences.&quot;
         </blockquote>
-      </header>
+      </section>
 
       <AnimatedSection>
         <Section title="Professional Summary">
@@ -56,7 +56,6 @@ export default function HomePageClient({ gitHubActivityCard }: { gitHubActivityC
         </Section>
       </AnimatedSection>
       
-      {/* The GitHub card is rendered here */}
       <AnimatedSection>
         <div className="mb-10">
           {gitHubActivityCard}

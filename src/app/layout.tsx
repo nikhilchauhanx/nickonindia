@@ -1,15 +1,16 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
-import nextFontLocal from "next/font/local"; // 1. Import the local font loader
+import nextFontLocal from "next/font/local";
 import Script from "next/script";
 import GoogleAnalytics from "../components/analytics/GoogleAnalytics";
+import Header from "../components/Header"; // 1. Import the new Header component
 import "./globals.css";
 
-// 2. Configure the local font with the corrected filename
+// Configure the local font
 const inter = nextFontLocal({
   src: '../fonts/Inter-VariableFont_opsz,wght.ttf',
   display: 'swap',
-  variable: '--font-inter', // Optional: for use in CSS
+  variable: '--font-inter',
 });
 
 export const metadata: Metadata = {
@@ -87,8 +88,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      {/* 3. Apply the font class to the body */}
       <body className={inter.className}>
+        {/* 2. Add the Header here so it appears on every page */}
+        <Header />
         {children}
       </body>
     </html>
