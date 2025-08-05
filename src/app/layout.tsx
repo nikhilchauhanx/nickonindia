@@ -1,16 +1,14 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
 import nextFontLocal from "next/font/local";
-import Script from "next/script";
 import GoogleAnalytics from "../components/analytics/GoogleAnalytics";
-import Header from "../components/Header"; // 1. Import the new Header component
-import "./globals.css";
+import Header from "../components/Header";
+import "./globals.css"; // This now imports the optimized Tailwind styles
 
 // Configure the local font
 const inter = nextFontLocal({
   src: '../fonts/Inter-VariableFont_opsz,wght.ttf',
   display: 'swap',
-  variable: '--font-inter',
 });
 
 export const metadata: Metadata = {
@@ -81,7 +79,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script src="https://cdn.tailwindcss.com" strategy="beforeInteractive" />
+        {/* The slow CDN script has been removed to improve performance */}
         <GoogleAnalytics />
         <script
           type="application/ld+json"
@@ -89,7 +87,6 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        {/* 2. Add the Header here so it appears on every page */}
         <Header />
         {children}
       </body>

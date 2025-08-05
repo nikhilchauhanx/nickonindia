@@ -1,10 +1,9 @@
-// tailwind.config.ts
-import type { Config } from 'tailwindcss'
-
-export default {
+/** @type {import('tailwindcss').Config} */
+const config = {
   content: [
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -25,8 +24,8 @@ export default {
       },
     },
   },
-  // The new typography plugin is added here
   plugins: [
     require('@tailwindcss/typography'),
   ],
-} satisfies Config
+};
+export default config;
