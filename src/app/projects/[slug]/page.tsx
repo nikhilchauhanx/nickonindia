@@ -1,53 +1,38 @@
 // src/app/projects/[slug]/page.tsx
-import { projects } from '@/data';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
-// Define a specific type for the page's props
-type ProjectPageProps = {
-  params: {
-    slug: string;
-  };
-};
-
-// This function is now SYNCHRONOUS, which resolves the build error.
-export function generateMetadata({ params }: ProjectPageProps): Metadata {
+// This function generates dynamic metadata for each project page.
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  // We import the data directly inside the function to ensure it's available at build time.
+  const { projects } = await import('@/data');
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) {
     return {
       title: 'Project Not Found',
-      description: 'The project you are looking for does not exist.',
     };
   }
 
   return {
     title: `${project.title} | Case Study`,
-    description: `A detailed case study for the ${project.title} project, showcasing the objectives, challenges, and technologies used.`,
-    openGraph: {
-        title: `${project.title} | Case Study by Nikhil Chauhan`,
-        description: project.description,
-    },
+    description: `A detailed case study for the ${project.title} project.`,
   };
 }
 
 // This function pre-builds the pages for performance.
 export async function generateStaticParams() {
+  const { projects } = await import('@/data');
   return projects.map((project) => ({
     slug: project.slug,
   }));
 }
 
-// This synchronous function finds the project data.
-function getProject(slug: string) {
-  const project = projects.find((p) => p.slug === slug);
-  return project;
-}
-
-// The main page component now uses the new ProjectPageProps type.
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = getProject(params.slug);
+// The main page component is now async and directly finds the project data.
+export default async function ProjectPage({ params }: { params: { slug: string } }) {
+  const { projects } = await import('@/data');
+  const project = projects.find((p) => p.slug === params.slug);
 
   if (!project || !project.caseStudy) {
     notFound();
