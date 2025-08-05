@@ -1,12 +1,11 @@
 // src/app/projects/[slug]/page.tsx
+import { projects } from '@/data';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
-// This function generates dynamic metadata for each project page.
+// This function generates dynamic metadata.
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  // We import the data directly inside the function to ensure it's available at build time.
-  const { projects } = await import('@/data');
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) {
@@ -23,21 +22,20 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 // This function pre-builds the pages for performance.
 export async function generateStaticParams() {
-  const { projects } = await import('@/data');
   return projects.map((project) => ({
     slug: project.slug,
   }));
 }
 
-// The main page component is now async and directly finds the project data.
+// The main page component. It is now async and finds the project data directly.
 export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  const { projects } = await import('@/data');
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project || !project.caseStudy) {
     notFound();
   }
 
+  // Destructure caseStudy here to ensure it's not null before rendering
   const { title, stack, caseStudy, liveUrl, repoUrl } = project;
 
   return (
