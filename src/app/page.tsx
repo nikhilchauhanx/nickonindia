@@ -5,7 +5,8 @@ import React from "react";
 import Section from "../components/Section";
 import ProjectCard from "../components/ProjectCard";
 import AnimatedSection from "../components/AnimatedSection";
-import SkillsGrid from "../components/SkillsGrid"; // 1. Import the new SkillsGrid component
+import SkillsGrid from "../components/SkillsGrid";
+import TestimonialCard from "../components/TestimonialCard"; // 1. Import the new TestimonialCard component
 import {
   socialLinks,
   professionalSummary,
@@ -13,7 +14,8 @@ import {
   experience,
   education,
   certifications,
-  achievements
+  achievements,
+  testimonials // 2. Import the new testimonials data
 } from "../data";
 
 export default function Home() {
@@ -54,7 +56,6 @@ export default function Home() {
           </Section>
         </AnimatedSection>
 
-        {/* 2. Replace the old skills list with the new SkillsGrid component */}
         <AnimatedSection>
           <Section title="Technical Skills">
             <SkillsGrid />
@@ -65,6 +66,15 @@ export default function Home() {
           <Section title="Projects">
             {projects.map((project, index) => (
               <ProjectCard key={index} project={project} />
+            ))}
+          </Section>
+        </AnimatedSection>
+
+        {/* 3. Add the new Testimonials section */}
+        <AnimatedSection>
+          <Section title="Testimonials">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard key={index} testimonial={testimonial} />
             ))}
           </Section>
         </AnimatedSection>

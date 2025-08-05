@@ -11,7 +11,6 @@ import {
   SiMysql, SiGraphql, SiPrisma, SiVercel, SiNetlify, SiPostman, SiSupabase 
 } from "react-icons/si";
 
-
 // --- TYPE DEFINITIONS ---
 
 interface SocialLink {
@@ -51,10 +50,16 @@ interface Education {
     duration: string;
 }
 
-// New type for individual skills with icons
 interface Skill {
   name: string;
   icon: IconType;
+}
+
+// New type for a single testimonial
+interface Testimonial {
+  quote: string;
+  author: string;
+  role: string;
 }
 
 // --- DATA EXPORTS ---
@@ -74,7 +79,6 @@ export const socialLinks: SocialLink[] = [
 
 export const professionalSummary: string = "Full Stack Developer skilled in React.js, Node.js, and MongoDB with a solid foundation in JavaScript and web architecture. Transitioned from test automation to development. Delivered 5+ real-world projects and solved 100+ DSA problems. Passionate about performance, clean code, and scalable systems.";
 
-// --- UPGRADED technicalSkills OBJECT ---
 export const technicalSkills: Record<string, Skill[]> = {
   "Frontend Development": [
     { name: "JavaScript (ESNext)", icon: SiJavascript },
@@ -94,7 +98,7 @@ export const technicalSkills: Record<string, Skill[]> = {
     { name: "PostgreSQL", icon: SiPostgresql },
     { name: "MySQL", icon: SiMysql },
     { name: "Supabase", icon: SiSupabase },
-    { name: "RESTful APIs", icon: SiGraphql }, // Using GraphQL as a representative icon
+    { name: "RESTful APIs", icon: SiGraphql },
     { name: "Prisma", icon: SiPrisma },
   ],
   "Developer Tools & Platforms": [
@@ -193,4 +197,13 @@ export const achievements: string[] = [
   "Effective communicator and collaborative team player.",
   "Consistently contributed to open source with 150+ GitHub commits in 3 months.",
   "Solved 100+ algorithmic problems on LeetCode, enhancing problem-solving skills.",
+];
+
+// New array for testimonials data
+export const testimonials: Testimonial[] = [
+  {
+    quote: "Nikhil is one of the most dedicated and sharp individuals I've had the pleasure of managing. His transition from automation to full-stack development was seamless, driven by a genuine passion for building and problem-solving. He consistently delivered high-quality work and was a key asset to our team.",
+    author: "Eshwarmurthi parthiban",
+    role: "Former Manager, Cognizant"
+  },
 ];
