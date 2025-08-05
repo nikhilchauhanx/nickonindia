@@ -4,15 +4,15 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
-// Define a specific type for the page's props to satisfy TypeScript
+// Define a specific type for the page's props
 type ProjectPageProps = {
   params: {
     slug: string;
   };
 };
 
-// This function generates dynamic metadata for each project page.
-export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+// This function is now SYNCHRONOUS, which resolves the build error.
+export function generateMetadata({ params }: ProjectPageProps): Metadata {
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) {
