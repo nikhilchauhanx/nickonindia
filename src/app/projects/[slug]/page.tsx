@@ -4,8 +4,15 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
-// This function generates dynamic metadata. It needs to be async.
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+// Define a specific type for the page's props to satisfy TypeScript
+type ProjectPageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+// This function generates dynamic metadata for each project page.
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) {
@@ -38,8 +45,8 @@ function getProject(slug: string) {
   return project;
 }
 
-// The main page component is now SYNCHRONOUS, which resolves the error.
-export default function ProjectPage({ params }: { params: { slug: string } }) {
+// The main page component now uses the new ProjectPageProps type.
+export default function ProjectPage({ params }: ProjectPageProps) {
   const project = getProject(params.slug);
 
   if (!project || !project.caseStudy) {
