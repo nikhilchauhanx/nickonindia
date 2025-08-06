@@ -3,6 +3,7 @@ import { getPostData, getSortedPostsData } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import SocialShareButtons from '@/components/SocialShareButtons'; // 1. Import the new component
 
 // This function generates the dynamic metadata for each blog post
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
@@ -57,6 +58,12 @@ export default async function PostPage({ params }: { params: { slug:string } }) 
             className="prose lg:prose-xl max-w-none"
             dangerouslySetInnerHTML={{ __html: post.contentHtml }}
           />
+
+          {/* 2. Add the new share buttons section at the bottom */}
+          <footer className="mt-12 pt-8 border-t border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Share this article</h3>
+            <SocialShareButtons title={post.title} slug={post.slug} />
+          </footer>
         </article>
       </div>
     </main>
