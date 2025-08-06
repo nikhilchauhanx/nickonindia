@@ -7,6 +7,7 @@ import ProjectCard from "./ProjectCard";
 import AnimatedSection from "./AnimatedSection";
 import SkillsGrid from "./SkillsGrid";
 import TestimonialCard from "./TestimonialCard";
+import DownloadResumeButton from "./resume/DownloadResumeButton"; // 1. Import the new button
 import {
   socialLinks,
   professionalSummary,
@@ -26,13 +27,19 @@ export default function HomePageClient({ gitHubActivityCard }: { gitHubActivityC
       <section className="mb-10">
         <h1 className="text-4xl md:text-5xl font-bold mb-2">Nikhil Chauhan <span className="text-indigo-600">aka Nickon India</span></h1>
         <p className="text-lg md:text-xl mb-6">Full Stack Developer · Digital Creator · YouTuber · Streamer</p>
-        <a
-          href="/Nikhil-Chauhan-Resume.pdf"
-          download="Nikhil-Chauhan-Resume.pdf"
-          className="inline-block bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors duration-300 mb-6 shadow-lg"
-        >
-          Download Resume
-        </a>
+        
+        {/* 2. Add a container for both resume buttons */}
+        <div className="flex items-center gap-4 mb-6">
+          <a
+            href="/Nikhil-Chauhan-Resume.pdf"
+            download="Nikhil-Chauhan-Resume.pdf"
+            className="inline-block bg-gray-700 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-800 transition-colors duration-300 shadow-lg"
+          >
+            Download PDF
+          </a>
+          <DownloadResumeButton />
+        </div>
+
         <p className="mb-6 text-sm uppercase tracking-wide text-gray-500">GLOBAL CREATOR FROM INDIA · BASED IN NOIDA, UP</p>
         <div className="flex flex-wrap gap-5 mb-6 text-indigo-600 text-3xl">
           {socialLinks.map((link) => {
