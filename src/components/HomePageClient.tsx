@@ -7,8 +7,9 @@ import ProjectCard from "./ProjectCard";
 import AnimatedSection from "./AnimatedSection";
 import SkillsGrid from "./SkillsGrid";
 import TestimonialCard from "./TestimonialCard";
+import CallToAction from "./CallToAction"; // 1. Import the new CTA component
 import {
-  socialLinks, // Re-import socialLinks
+  socialLinks,
   professionalSummary,
   projects,
   experience,
@@ -20,10 +21,9 @@ import {
 
 export default function HomePageClient({ gitHubActivityCard }: { gitHubActivityCard: React.ReactNode }) {
   return (
-    // Add top padding (pt-16) to push content down from the sticky header
     <section className="max-w-4xl mx-auto pt-16">
       
-      {/* The Hero section is now back on the homepage */}
+      {/* Hero Section */}
       <section className="mb-10">
         <h1 className="text-4xl md:text-5xl font-bold mb-2">Nikhil Chauhan <span className="text-indigo-600">aka Nickon India</span></h1>
         <p className="text-lg md:text-xl mb-6">Full Stack Developer · Digital Creator · YouTuber · Streamer</p>
@@ -118,6 +118,13 @@ export default function HomePageClient({ gitHubActivityCard }: { gitHubActivityC
             {achievements.map(ach => <li key={ach}>{ach}</li>)}
           </ul>
         </Section>
+      </AnimatedSection>
+
+      {/* 2. Add the new Call to Action section at the bottom */}
+      <AnimatedSection>
+        <div className="mt-10">
+          <CallToAction />
+        </div>
       </AnimatedSection>
 
     </section>
