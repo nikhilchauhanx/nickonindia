@@ -2,12 +2,13 @@
 'use client';
 
 import React from "react";
-import dynamic from 'next/dynamic'; // 1. Import dynamic from next/dynamic
+import Image from "next/image"; // 1. Import the Image component
 import Section from "./Section";
 import ProjectCard from "./ProjectCard";
 import AnimatedSection from "./AnimatedSection";
 import SkillsGrid from "./SkillsGrid";
 import TestimonialCard from "./TestimonialCard";
+import DownloadResumeButton from "./resume/DownloadResumeButton";
 import {
   socialLinks,
   professionalSummary,
@@ -19,18 +20,24 @@ import {
   testimonials
 } from "../data";
 
-// 2. Create a dynamic version of the resume button that only loads on the client-side
-const DownloadResumeButton = dynamic(() => import('./resume/DownloadResumeButton'), {
-  ssr: false, // This is the key: it disables server-side rendering for this component
-  loading: () => <p className="inline-block bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg shadow-lg">Loading...</p>
-});
-
-
 export default function HomePageClient({ gitHubActivityCard }: { gitHubActivityCard: React.ReactNode }) {
   return (
     <section className="max-w-4xl mx-auto pt-16">
       
-      {/* Hero Section */}
+      {/* 2. Added the new banner image section at the top */}
+      <section className="mb-10">
+        <Image 
+          src="/hero-banner.jpg"
+          alt="Nickon India banner with code and streaming icons"
+          width={1024}
+          height={576}
+          quality={85}
+          className="rounded-lg shadow-xl"
+          priority // Add priority to load this important image faster
+        />
+      </section>
+
+      {/* Hero Section (Your existing content) */}
       <section className="mb-10">
         <h1 className="text-4xl md:text-5xl font-bold mb-2">Nikhil Chauhan <span className="text-indigo-600">aka Nickon India</span></h1>
         <p className="text-lg md:text-xl mb-6">Full Stack Developer · Digital Creator · YouTuber · Streamer</p>
@@ -43,7 +50,6 @@ export default function HomePageClient({ gitHubActivityCard }: { gitHubActivityC
           >
             Download PDF
           </a>
-          {/* 3. Use the new dynamic button */}
           <DownloadResumeButton />
         </div>
 
@@ -63,6 +69,7 @@ export default function HomePageClient({ gitHubActivityCard }: { gitHubActivityC
         </blockquote>
       </section>
 
+      {/* The rest of your page content remains the same */}
       <AnimatedSection>
         <Section title="Professional Summary">
           <p>{professionalSummary}</p>
