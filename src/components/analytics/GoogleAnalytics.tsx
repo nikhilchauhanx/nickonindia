@@ -4,8 +4,8 @@
 import Script from 'next/script'
 
 const GoogleAnalytics = () => {
-  // Your actual Measurement ID is now included.
-  const measurementId = 'G-FTN17LZ24W' 
+  // Your new, correct Measurement ID is now included.
+  const measurementId = 'G-4GS30XTRRY' 
 
   return (
     <>
