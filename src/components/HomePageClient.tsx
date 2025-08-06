@@ -7,7 +7,6 @@ import ProjectCard from "./ProjectCard";
 import AnimatedSection from "./AnimatedSection";
 import SkillsGrid from "./SkillsGrid";
 import TestimonialCard from "./TestimonialCard";
-import CallToAction from "./CallToAction"; // 1. Import the new CTA component
 import {
   socialLinks,
   professionalSummary,
@@ -120,12 +119,7 @@ export default function HomePageClient({ gitHubActivityCard }: { gitHubActivityC
         </Section>
       </AnimatedSection>
 
-      {/* 2. Add the new Call to Action section at the bottom */}
-      <AnimatedSection>
-        <div className="mt-10">
-          <CallToAction />
-        </div>
-      </AnimatedSection>
+      {/* The old CallToAction component has been removed from here */}
 
     </section>
   );
