@@ -1,0 +1,51 @@
+---
+title: "How I Upgraded My Portfolio to a 90+ Lighthouse Score"
+date: "2025-08-06"
+description: "A deep dive into the technical optimizations I implemented to achieve a top-tier performance score on my Next.js portfolio, including fixing LCP, CLS, and self-hosting fonts."
+author: "Nikhil Chauhan"
+---
+
+### The Starting Point: A Good Site with a Bad Score
+
+After successfully migrating my portfolio to Next.js and deploying it on Vercel, everything looked great. The animations were smooth, the content was structured, and the design was clean. However, when I ran a Google Lighthouse audit, the results were humbling: a performance score of just **49**.
+
+The report flagged two major issues:
+- **Largest Contentful Paint (LCP):** A shocking 6.2 seconds.
+- **Cumulative Layout Shift (CLS):** A high 0.285.
+
+My site *looked* fast, but the data told a different story. It was clear that the user experience, especially on slower connections, was poor. I knew I had to fix it.
+
+### Diagnosing the Problem: The Render-Blocking Culprit
+
+The root cause was a workaround I had implemented earlier. During the initial setup, I faced some stubborn build errors with Tailwind CSS. To get the site deployed, I opted to use the Tailwind CDN script directly in my `<head>`:
+
+```html
+<script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+```
+
+While this worked, it was a performance disaster. This single script was a **render-blocking resource**. The browser had to download and execute this large CSS file before it could finish painting the main content of the page, leading to the terrible LCP. The CLS was happening because the page would first render as unstyled HTML, and then all the elements would shift into place once the CSS finally loaded.
+
+### The Solution: A Three-Step Performance Overhaul
+
+To fix this, I went back to the fundamentals and implemented the modern, built-in best practices for Next.js.
+
+#### 1. Stabilizing the Foundation
+The original build errors stemmed from using a bleeding-edge version of Next.js. The first step was to downgrade from `15.x` to the latest stable version, **`14.2.3`**. This resolved the underlying build instability and allowed me to use the standard toolchain.
+
+#### 2. Adopting the Built-in CSS Process
+With a stable foundation, I could finally remove the slow CDN script. I re-implemented the standard Next.js method for handling CSS:
+- I updated my `tailwind.config.mjs` and `postcss.config.mjs` files.
+- I added the standard `@tailwind` directives back into my `globals.css` file.
+
+This allowed Next.js's build process to do its magic. It now analyzes my code, finds only the Tailwind classes I'm actually using, and creates a tiny, highly-optimized CSS file that is bundled with the rest of my site's assets. This completely eliminated the render-blocking issue.
+
+#### 3. Self-Hosting the Font
+The final optimization was to remove the last external network request. Instead of using `next/font/google`, I downloaded the "Inter" font files and used `next/font/local`. This means the font is now served directly from my own project files, making it faster and more reliable.
+
+### The Result: A World-Class Performance Score
+
+After deploying these changes, I ran the Lighthouse audit again. The results were night and day:
+- **Performance Score:** Jumped from 49 to **75+** (and well into the 90s on desktop).
+- **Cumulative Layout Shift (CLS):** Dropped to a **perfect 0**.
+
+This journey was a powerful lesson in the importance of adhering to best practices. A good-looking site is one thing, but a high-performance site that provides an excellent user experience is what truly defines a professional, top-tier project.
