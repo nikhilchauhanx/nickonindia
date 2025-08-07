@@ -2,13 +2,14 @@
 import React from "react";
 import HomePageClient from "../components/HomePageClient";
 import GitHubActivityCard from "../components/GitHubActivityCard";
+import LatestVideoCard from "../components/LatestVideoCard"; // 1. Import the new component
 
 export default function Home() {
-  // This page now only returns the client component.
-  // The <main> and <footer> are handled globally in layout.tsx.
   return (
     <HomePageClient 
       gitHubActivityCard={<GitHubActivityCard />} 
+      // 2. Pass the new YouTube card as a prop
+      latestVideoCard={<LatestVideoCard />}
     />
   );
 }

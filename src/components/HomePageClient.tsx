@@ -2,7 +2,7 @@
 'use client';
 
 import React from "react";
-import dynamic from 'next/dynamic'; // 1. Import dynamic from next/dynamic
+import dynamic from 'next/dynamic';
 import Image from "next/image";
 import Section from "./Section";
 import ProjectCard from "./ProjectCard";
@@ -20,14 +20,20 @@ import {
   testimonials
 } from "../data";
 
-// 2. Create a dynamic version of the resume button that only loads on the client-side
+// Create a dynamic version of the resume button that only loads on the client-side
 const DownloadResumeButton = dynamic(() => import('./resume/DownloadResumeButton'), {
-  ssr: false, // This is the key: it disables server-side rendering for this component
+  ssr: false, // This disables server-side rendering for this component
   loading: () => <p className="inline-block bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg shadow-lg">Loading...</p>
 });
 
-
-export default function HomePageClient({ gitHubActivityCard }: { gitHubActivityCard: React.ReactNode }) {
+// This component now accepts both the GitHub and YouTube cards as props
+export default function HomePageClient({ 
+  gitHubActivityCard,
+  latestVideoCard
+}: { 
+  gitHubActivityCard: React.ReactNode,
+  latestVideoCard: React.ReactNode 
+}) {
   return (
     <section className="max-w-4xl mx-auto pt-16">
       
@@ -57,7 +63,6 @@ export default function HomePageClient({ gitHubActivityCard }: { gitHubActivityC
           >
             Download PDF
           </a>
-          {/* 3. Use the new dynamic button */}
           <DownloadResumeButton />
         </div>
 
@@ -72,10 +77,17 @@ export default function HomePageClient({ gitHubActivityCard }: { gitHubActivityC
             );
           })}
         </div>
-        <blockquote className="italic text-xl text-indigo-800 border-l-4 border-indigo-500 pl-4">
+        <blockquote className="italic text-xl text-indigo-800 border-l-4 border-indigo-500 pl-4 dark:text-indigo-400 dark:border-indigo-600">
           &quot;Not Just Building Apps — Building Audiences.&quot;
         </blockquote>
       </section>
+
+      {/* Add the new YouTube section here */}
+      <AnimatedSection>
+        <div className="mb-10">
+          {latestVideoCard}
+        </div>
+      </AnimatedSection>
 
       <AnimatedSection>
         <Section title="Professional Summary">
