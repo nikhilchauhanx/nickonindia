@@ -30,27 +30,29 @@ async function getGithubActivity() {
   }
 }
 
-// This is an async Server Component
+// This is an async Server Component with dark mode styles
 const GitHubActivityCard = async () => {
   const contributionCount = await getGithubActivity();
 
   return (
-    <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 shadow-lg flex items-center justify-between">
+    // Added dark mode styles to the card container
+    <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 shadow-lg flex items-center justify-between dark:bg-gray-800 dark:border-gray-700">
       <div>
-        <h3 className="font-bold text-lg text-gray-900">Recent GitHub Activity</h3>
+        {/* Added dark mode styles to the text */}
+        <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">Recent GitHub Activity</h3>
         {contributionCount !== null ? (
-          <p className="text-gray-600">
-            <span className="font-extrabold text-3xl text-indigo-600">{contributionCount}</span> contributions in the last 90 days.
+          <p className="text-gray-600 dark:text-gray-300">
+            <span className="font-extrabold text-3xl text-indigo-600 dark:text-indigo-400">{contributionCount}</span> contributions in the last 90 days.
           </p>
         ) : (
-          <p className="text-gray-500">Could not load activity data.</p>
+          <p className="text-gray-500 dark:text-gray-400">Could not load activity data.</p>
         )}
       </div>
       <a 
         href="https://github.com/nikhilchauhanx" 
         target="_blank" 
         rel="noopener noreferrer" 
-        className="flex items-center gap-2 text-white bg-gray-800 hover:bg-black font-semibold py-2 px-4 rounded-lg transition-colors"
+        className="flex items-center gap-2 text-white bg-gray-800 hover:bg-black font-semibold py-2 px-4 rounded-lg transition-colors dark:bg-gray-700 dark:hover:bg-gray-600"
       >
         <FaGithub />
         View Profile

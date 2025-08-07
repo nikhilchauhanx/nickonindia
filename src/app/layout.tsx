@@ -4,6 +4,7 @@ import nextFontLocal from "next/font/local";
 import GoogleAnalytics from "../components/analytics/GoogleAnalytics";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { ThemeProvider } from "../providers/ThemeProvider"; // 1. Import the new ThemeProvider
 import "./globals.css";
 
 const inter = nextFontLocal({
@@ -11,6 +12,7 @@ const inter = nextFontLocal({
   display: 'swap',
 });
 
+// Your existing metadata and jsonLd objects remain the same
 export const metadata: Metadata = {
   title: "Nikhil Chauhan | Portfolio",
   description: "Portfolio of Nikhil Chauhan (Nickon India), a Full Stack Developer, YouTuber, and Streamer specializing in the MERN Stack.",
@@ -50,13 +52,16 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </div>
+        {/* 2. Wrap everything in the body with the ThemeProvider */}
+        <ThemeProvider>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
