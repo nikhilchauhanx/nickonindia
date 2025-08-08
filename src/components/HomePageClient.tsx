@@ -20,28 +20,26 @@ import {
   testimonials
 } from "../data";
 
-// Create a dynamic version of the resume button that only loads on the client-side
 const DownloadResumeButton = dynamic(() => import('./resume/DownloadResumeButton'), {
-  ssr: false, // This disables server-side rendering for this component
+  ssr: false,
   loading: () => <p className="inline-block bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg shadow-lg">Loading...</p>
 });
 
-// This component now accepts both the GitHub and YouTube cards as props
+// This component now accepts the Creator Spotlight card
 export default function HomePageClient({ 
   gitHubActivityCard,
-  latestVideoCard
+  creatorSpotlight 
 }: { 
   gitHubActivityCard: React.ReactNode,
-  latestVideoCard: React.ReactNode 
+  creatorSpotlight: React.ReactNode 
 }) {
   return (
     <section className="max-w-4xl mx-auto pt-16">
       
-      {/* Banner Image Section */}
       <section className="mb-10">
         <Image 
           src="/hero-banner.jpg"
-          alt="Nickon India banner with code and streaming icons"
+          alt="Nickon India banner"
           width={1024}
           height={576}
           quality={85}
@@ -50,11 +48,9 @@ export default function HomePageClient({
         />
       </section>
 
-      {/* Hero Section */}
       <section className="mb-10">
         <h1 className="text-4xl md:text-5xl font-bold mb-2">Nikhil Chauhan <span className="text-indigo-600">aka Nickon India</span></h1>
         <p className="text-lg md:text-xl mb-6">Full Stack Developer · Digital Creator · YouTuber · Streamer</p>
-        
         <div className="flex items-center gap-4 mb-6">
           <a
             href="/Nikhil-Chauhan-Resume.pdf"
@@ -65,7 +61,6 @@ export default function HomePageClient({
           </a>
           <DownloadResumeButton />
         </div>
-
         <p className="mb-6 text-sm uppercase tracking-wide text-gray-500">GLOBAL CREATOR FROM INDIA · BASED IN NOIDA, UP</p>
         <div className="flex flex-wrap gap-5 mb-6 text-indigo-600 text-3xl">
           {socialLinks.map((link) => {
@@ -82,10 +77,10 @@ export default function HomePageClient({
         </blockquote>
       </section>
 
-      {/* Add the new YouTube section here */}
+      {/* Add the new Creator Spotlight section here */}
       <AnimatedSection>
         <div className="mb-10">
-          {latestVideoCard}
+          {creatorSpotlight}
         </div>
       </AnimatedSection>
 
@@ -101,6 +96,7 @@ export default function HomePageClient({
         </div>
       </AnimatedSection>
 
+      {/* ... (rest of your sections) */}
       <AnimatedSection>
         <Section title="Technical Skills">
           <SkillsGrid />
@@ -158,7 +154,6 @@ export default function HomePageClient({
           </ul>
         </Section>
       </AnimatedSection>
-
     </section>
   );
 }

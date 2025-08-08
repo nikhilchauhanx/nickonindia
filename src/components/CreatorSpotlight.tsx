@@ -57,7 +57,7 @@ const VideoCard = ({ video, label }: { video: { title: string, videoId: string }
   if (!video) return null;
 
   return (
-    <div className="flex-1 min-w-[300px]">
+    <div className="flex flex-col">
       <h4 className="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">{label}</h4>
       <div className="aspect-video mb-2">
         <iframe
@@ -86,18 +86,20 @@ const VideoCard = ({ video, label }: { video: { title: string, videoId: string }
 // New reusable component to display the Instagram Reel
 const ReelCard = ({ reelUrl, label }: { reelUrl: string, label: string }) => {
   return (
-    <div className="flex-1 min-w-[300px]">
+    <div className="flex flex-col">
       <h4 className="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">{label}</h4>
-      <div className="aspect-[9/16] mb-2">
-        <iframe
-          width="100%"
-          height="100%"
-          src={reelUrl}
-          title="Featured Instagram Reel"
-          frameBorder="0"
-          allowFullScreen
-          className="rounded-md"
-        ></iframe>
+      <div className="w-full" style={{ maxWidth: '320px', margin: '0 auto' }}>
+        <div className="aspect-[9/16] mb-2">
+          <iframe
+            width="100%"
+            height="100%"
+            src={reelUrl}
+            title="Featured Instagram Reel"
+            frameBorder="0"
+            allowFullScreen
+            className="rounded-md"
+          ></iframe>
+        </div>
       </div>
     </div>
   );
@@ -114,7 +116,7 @@ const CreatorSpotlight = async () => {
       <h3 className="text-2xl font-bold text-gray-900 mb-6 dark:text-gray-100">Creator Spotlight</h3>
       
       {latestVideo || featuredVideo ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
           <VideoCard video={latestVideo} label="Latest YouTube Video" />
           <VideoCard video={featuredVideo} label="Featured YouTube Video" />
           <ReelCard reelUrl={featuredReelUrl} label="Featured Instagram Reel" />
