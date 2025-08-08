@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@react-pdf/renderer": "^4.3.0",
     "@vercel/og": "^0.8.5",
     "framer-motion": "^11.2.10",

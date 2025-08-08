@@ -4,7 +4,8 @@ import nextFontLocal from "next/font/local";
 import GoogleAnalytics from "../components/analytics/GoogleAnalytics";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { ThemeProvider } from "../providers/ThemeProvider"; // 1. Import the new ThemeProvider
+import ChatAssistant from "../components/ai/ChatAssistant"; // 1. Import the new component
+import { ThemeProvider } from "../providers/ThemeProvider";
 import "./globals.css";
 
 const inter = nextFontLocal({
@@ -52,7 +53,6 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        {/* 2. Wrap everything in the body with the ThemeProvider */}
         <ThemeProvider>
           <div className="flex flex-col min-h-screen">
             <Header />
@@ -61,6 +61,8 @@ export default function RootLayout({
             </main>
             <Footer />
           </div>
+          {/* 2. Add the ChatAssistant here so it floats above everything */}
+          <ChatAssistant />
         </ThemeProvider>
       </body>
     </html>
