@@ -5,25 +5,24 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import SocialShareButtons from '@/components/SocialShareButtons';
 
-// This function now generates dynamic metadata, including a custom social sharing image.
+// This function generates dynamic metadata with all fixes included.
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = await getPostData(params.slug);
   if (!post) {
     return { title: 'Post Not Found' };
   }
 
-  // Determine the base URL, ensuring it has a protocol.
-  const baseUrl = process.env.VERCEL_URL 
-    ? `https://${process.env.VERCEL_URL}` 
-    : 'http://localhost:3000';
+  // Use the reliable environment variable for the base URL.
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
-  // Create the URL for the dynamic OG image using the corrected base URL.
+  // Create the URL for the dynamic OG image.
   const ogImageUrl = new URL(`${baseUrl}/api/og`);
   ogImageUrl.searchParams.set('title', post.title);
 
   return {
     title: post.title,
     description: post.description,
+    authors: [{ name: 'Nikhil Chauhan' }], // Fixes "No author found"
     openGraph: {
       title: post.title,
       description: post.description,
@@ -32,8 +31,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       images: [
         {
           url: ogImageUrl.toString(),
-          width: 1200,
-          height: 630,
+          width: 1200, // Fixes "Inferred Property" warning
+          height: 630, // Fixes "Inferred Property" warning
           alt: post.title,
         },
       ],
