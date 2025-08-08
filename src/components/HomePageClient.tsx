@@ -9,7 +9,6 @@ import ProjectCard from "./ProjectCard";
 import AnimatedSection from "./AnimatedSection";
 import SkillsGrid from "./SkillsGrid";
 import TestimonialCard from "./TestimonialCard";
-import BusinessSolutions from "./BusinessSolutions"; // 1. Import the new component
 import {
   socialLinks,
   professionalSummary,
@@ -26,12 +25,15 @@ const DownloadResumeButton = dynamic(() => import('./resume/DownloadResumeButton
   loading: () => <p className="inline-block bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg shadow-lg">Loading...</p>
 });
 
+// This component now correctly accepts the introductionVideo prop
 export default function HomePageClient({ 
   gitHubActivityCard,
-  creatorSpotlight 
+  creatorSpotlight,
+  introductionVideo
 }: { 
   gitHubActivityCard: React.ReactNode,
-  creatorSpotlight: React.ReactNode 
+  creatorSpotlight: React.ReactNode,
+  introductionVideo: React.ReactNode 
 }) {
   return (
     <section className="max-w-4xl mx-auto pt-16">
@@ -89,9 +91,9 @@ export default function HomePageClient({
         </Section>
       </AnimatedSection>
 
-      {/* 2. Add the new Business Solutions section here */}
+      {/* The new Introduction Video section is correctly placed here */}
       <AnimatedSection>
-        <BusinessSolutions />
+        {introductionVideo}
       </AnimatedSection>
       
       <AnimatedSection>
