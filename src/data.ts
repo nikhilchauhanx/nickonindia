@@ -10,7 +10,6 @@ import {
   SiTailwindcss, SiStyledcomponents, SiExpress, SiMongodb, SiPostgresql, 
   SiMysql, SiGraphql, SiPrisma, SiVercel, SiNetlify, SiPostman, SiSupabase 
 } from "react-icons/si";
-import { PiBear } from "react-icons/pi";
 
 // --- TYPE DEFINITIONS ---
 
@@ -76,7 +75,6 @@ export const socialLinks: SocialLink[] = [
   { name: "Medium", href: "https://medium.com/@nickonindia", icon: FaMedium },
 ];
 
-// --- UPGRADED professionalSummary ---
 export const professionalSummary: string = "I'm a Full-Stack Developer who thrives on building robust, user-centric applications from the ground up. My journey began in test automation at Cognizant, where I developed a deep appreciation for quality and reliability—a perspective I now bring to every line of code I write. Driven by a passion for creating, I taught myself the MERN stack and transitioned into a full-stack role, delivering 5+ projects that showcase my skills in both frontend and backend development. As a digital creator under the 'Nickon India' brand, I don't just build apps; I build audiences, which gives me a unique understanding of user engagement and communication.";
 
 export const technicalSkills: Record<string, Skill[]> = {
@@ -86,7 +84,6 @@ export const technicalSkills: Record<string, Skill[]> = {
     { name: "React.js", icon: FaReact },
     { name: "Next.js (14+)", icon: SiNextdotjs },
     { name: "Redux Toolkit", icon: SiRedux },
-    { name: "Zustand", icon: PiBear },
     { name: "Tailwind CSS", icon: SiTailwindcss },
     { name: "Styled-Components", icon: SiStyledcomponents },
     { name: "HTML5", icon: FaHtml5 },
@@ -157,7 +154,6 @@ export const projects: Project[] = [
   },
 ];
 
-// --- UPGRADED experience ---
 export const experience: Experience[] = [
   {
     role: "Automation Engineer",
@@ -168,7 +164,6 @@ export const experience: Experience[] = [
   }
 ];
 
-// --- UPGRADED education (years removed) ---
 export const education: Education = {
   degree: "B.Tech – Information Technology",
   institution: "Amity University, Noida",
@@ -180,7 +175,6 @@ export const certifications: string[] = [
   "MongoDB for Developers: A Complete Guide (MongoDB University)",
 ];
 
-// --- UPGRADED achievements ---
 export const achievements: string[] = [
   "Grew a YouTube channel and Instagram presence (Nickon India) to over 1,000+ followers, developing strong skills in communication and audience engagement.",
   "Consistently contributed to open source with 150+ GitHub commits in 3 months.",

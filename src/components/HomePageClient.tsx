@@ -134,7 +134,7 @@ export default function HomePageClient({
 
       <AnimatedSection>
         <Section title="Education">
-          <p><strong>{education.degree}</strong> ({education.duration})</p>
+          <p><strong>{education.degree}</strong></p>
           <p>{education.institution}</p>
         </Section>
       </AnimatedSection>
