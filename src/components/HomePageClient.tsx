@@ -9,6 +9,7 @@ import ProjectCard from "./ProjectCard";
 import AnimatedSection from "./AnimatedSection";
 import SkillsGrid from "./SkillsGrid";
 import TestimonialCard from "./TestimonialCard";
+import BusinessSolutions from "./BusinessSolutions"; // 1. Import the new component
 import {
   socialLinks,
   professionalSummary,
@@ -25,7 +26,6 @@ const DownloadResumeButton = dynamic(() => import('./resume/DownloadResumeButton
   loading: () => <p className="inline-block bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg shadow-lg">Loading...</p>
 });
 
-// This component now accepts the Creator Spotlight card
 export default function HomePageClient({ 
   gitHubActivityCard,
   creatorSpotlight 
@@ -77,7 +77,6 @@ export default function HomePageClient({
         </blockquote>
       </section>
 
-      {/* Add the new Creator Spotlight section here */}
       <AnimatedSection>
         <div className="mb-10">
           {creatorSpotlight}
@@ -89,6 +88,11 @@ export default function HomePageClient({
           <p>{professionalSummary}</p>
         </Section>
       </AnimatedSection>
+
+      {/* 2. Add the new Business Solutions section here */}
+      <AnimatedSection>
+        <BusinessSolutions />
+      </AnimatedSection>
       
       <AnimatedSection>
         <div className="mb-10">
@@ -96,7 +100,6 @@ export default function HomePageClient({
         </div>
       </AnimatedSection>
 
-      {/* ... (rest of your sections) */}
       <AnimatedSection>
         <Section title="Technical Skills">
           <SkillsGrid />
@@ -154,6 +157,7 @@ export default function HomePageClient({
           </ul>
         </Section>
       </AnimatedSection>
+
     </section>
   );
 }
