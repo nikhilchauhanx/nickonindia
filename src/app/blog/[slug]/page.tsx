@@ -12,8 +12,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     return { title: 'Post Not Found' };
   }
 
-  // Create the URL for the dynamic OG image
-  const ogImageUrl = new URL(`${process.env.VERCEL_URL || 'http://localhost:3000'}/api/og`);
+  // Determine the base URL, ensuring it has a protocol.
+  const baseUrl = process.env.VERCEL_URL 
+    ? `https://${process.env.VERCEL_URL}` 
+    : 'http://localhost:3000';
+
+  // Create the URL for the dynamic OG image using the corrected base URL.
+  const ogImageUrl = new URL(`${baseUrl}/api/og`);
   ogImageUrl.searchParams.set('title', post.title);
 
   return {
