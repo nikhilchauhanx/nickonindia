@@ -1,7 +1,7 @@
 // src/components/SocialShareButtons.tsx
-'use client'; // This component needs to be a client component to construct the URLs
+'use client';
 
-import { FaTwitter, FaLinkedin, FaReddit, FaWhatsapp } from 'react-icons/fa';
+import { FaTwitter, FaLinkedin, FaReddit, FaWhatsapp, FaFacebook } from 'react-icons/fa';
 
 interface SocialShareButtonsProps {
   title: string;
@@ -22,6 +22,7 @@ const SocialShareButtons = ({ title, slug }: SocialShareButtonsProps) => {
   const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`;
   const redditShareUrl = `https://www.reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`;
   const whatsappShareUrl = `https://api.whatsapp.com/send?text=${twitterText}%20${encodedUrl}`;
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
 
 
   return (
@@ -43,6 +44,16 @@ const SocialShareButtons = ({ title, slug }: SocialShareButtonsProps) => {
       >
         <FaLinkedin />
         <span>Share on LinkedIn</span>
+      </a>
+      {/* Added the new Facebook share button */}
+      <a
+        href={facebookShareUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-2 text-sm text-white bg-[#1877F2] hover:bg-[#166fe5] font-semibold py-2 px-4 rounded-lg transition-colors"
+      >
+        <FaFacebook />
+        <span>Share on Facebook</span>
       </a>
       <a
         href={redditShareUrl}
