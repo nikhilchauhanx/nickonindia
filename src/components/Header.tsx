@@ -11,6 +11,7 @@ const Header = () => {
 
   const getCurrentPageTitle = () => {
     if (pathname === '/') return 'Home';
+    if (pathname.startsWith('/services')) return 'Services';
     if (pathname.startsWith('/blog')) return 'Journal';
     if (pathname.startsWith('/projects')) return 'Case Study';
     return 'Portfolio';
@@ -49,6 +50,16 @@ const Header = () => {
               HOME
             </Link>
             
+            <span className="text-gray-300 dark:text-gray-700">|</span>
+
+            {/* Added the new Services link */}
+            <Link 
+              href="/services" 
+              className={`transition-colors ${pathname.startsWith('/services') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400'}`}
+            >
+              SERVICES
+            </Link>
+
             <span className="text-gray-300 dark:text-gray-700">|</span>
 
             <Link 

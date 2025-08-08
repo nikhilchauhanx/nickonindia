@@ -22,15 +22,10 @@ const ContactForm = () => {
       });
 
       if (response.ok) {
-        setStatus('Message sent successfully!');
+        setStatus('Thank you for your inquiry! I will get back to you shortly.');
         form.reset();
       } else {
-        const responseData = await response.json();
-        if (responseData.errors) {
-          setStatus(responseData.errors.map((error: any) => error.message).join(', '));
-        } else {
-          setStatus('Oops! There was a problem submitting your form.');
-        }
+        setStatus('Oops! There was a problem submitting your form.');
       }
     } catch (error) {
       setStatus('Oops! There was a problem submitting your form.');
@@ -38,8 +33,8 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="flex flex-col sm:flex-row gap-4">
+    <form onSubmit={handleSubmit} className="space-y-4 text-left">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <input
           type="text"
           name="name"
@@ -56,9 +51,23 @@ const ContactForm = () => {
         />
       </div>
       <div>
+        <select 
+          name="service_interest" 
+          defaultValue="" 
+          required
+          className="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        >
+          <option value="" disabled>What service are you interested in?</option>
+          <option>Next.js & React Development</option>
+          <option>API & Backend Development</option>
+          <option>Technical Content Creation</option>
+          <option>Other Inquiry</option>
+        </select>
+      </div>
+      <div>
         <textarea
           name="message"
-          placeholder="Your Message"
+          placeholder="Tell me a little about your project..."
           required
           rows={5}
           className="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -69,7 +78,7 @@ const ContactForm = () => {
           type="submit"
           className="bg-white text-gray-900 font-bold py-3 px-8 rounded-lg hover:bg-gray-200 transition-colors duration-300"
         >
-          Send Message
+          Send Project Inquiry
         </button>
       </div>
       {status && <p className="text-center text-sm mt-4">{status}</p>}
