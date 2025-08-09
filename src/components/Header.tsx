@@ -40,6 +40,13 @@ const Header = () => {
             >
               Journal
             </Link>
+            {/* Added the new Uses link */}
+            <Link 
+              href="/uses" 
+              className={`transition-colors ${pathname.startsWith('/uses') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400'}`}
+            >
+              Uses
+            </Link>
           </div>
         </div>
 
