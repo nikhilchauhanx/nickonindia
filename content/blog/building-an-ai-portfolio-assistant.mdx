@@ -1,0 +1,55 @@
+---
+title: "I Built an AI Assistant for My Portfolio with Next.js and the Gemini API"
+date: "2025-08-12"
+description: "A step-by-step guide on how I built a personal AI chatbot, trained it on my own portfolio data, and integrated it into my Next.js website to create an interactive experience for visitors."
+author: "Nikhil Chauhan"
+---
+
+A portfolio is a developer's most important product. For my own, I wanted to push beyond a static display of projects and create something truly interactive—a feature that not only showcases my skills but also demonstrates my passion for modern technology. That's why I decided to build a personal AI assistant, "Nickon India AI," directly into my site.
+
+In this article, I'll walk you through the architecture, the technology choices, and the key steps I took to bring this feature to life.
+
+### The Goal: An Interactive Guide for Recruiters
+
+The primary goal was to create a "wow" factor that would make my portfolio memorable. I imagined a recruiter being able to ask questions directly, like "What are Nikhil's strongest frontend skills?" or "Tell me about the Xenzy Thrift Store project," and get an instant, accurate answer. This would transform my portfolio from a passive document into an active, engaging experience.
+
+### The Tech Stack: Next.js and the Google Gemini API
+
+The foundation of my portfolio is **Next.js**, which made this integration surprisingly straightforward. The key was leveraging its support for API Routes and React Server Components.
+
+For the AI itself, I chose the **Google Gemini API**, specifically the `gemini-1.5-flash` model. It's incredibly fast, powerful, and has a generous free tier that is more than enough for a portfolio project.
+
+### The Architecture: A Secure, Server-Side Approach
+
+The most critical part of the architecture was ensuring my secret API key was never exposed to the public. Here's the simple but secure workflow I implemented:
+
+1.  **Frontend:** A client-side chat component (built with React) captures the user's message.
+2.  **API Route:** The frontend sends the message to a dedicated API route in my Next.js app (`/api/chat`).
+3.  **Backend Logic:** This server-side route is the only part of my application that has access to the `GEMINI_API_KEY` (stored securely as an environment variable on Vercel). It takes the user's message, combines it with a pre-written prompt and a large block of text containing all my portfolio data, and then sends this complete package to the Gemini API.
+4.  **AI Response:** The Gemini API processes the request and sends a response back to my API route.
+5.  **Final Delivery:** My API route then sends the clean, text-based response back to the frontend chat component to be displayed to the user.
+
+This ensures that the user's browser never interacts directly with the Gemini API, and my secret key remains safe on the server.
+
+### The "Brain" of the Assistant: The Prompt
+
+The magic of a good AI assistant lies in its prompt. Before I send the user's question to the AI, I wrap it in a carefully crafted set of instructions and provide it with all the necessary context. Here's a simplified version of the prompt I wrote:
+
+```
+You are Nikhil Chauhan's personal AI assistant for his portfolio website. 
+Your name is "Nickon India AI". Your goal is to answer questions from potential recruiters 
+and clients based *only* on the context provided below. Be friendly, professional, and concise. 
+
+Context about Nikhil Chauhan:
+---
+[Here, I inject a dynamically generated string containing all the text from my project case studies, skills, experience, etc.]
+---
+
+User's question: "[The user's message goes here]"
+```
+
+By providing all the data as context, I ensure the AI's answers are accurate and relevant to my portfolio.
+
+### Conclusion
+
+Building this AI assistant was an incredibly rewarding experience. It was a fantastic opportunity to work with a modern Generative AI API and to think deeply about how to create a truly unique and engaging user experience. It's the perfect embodiment of my brand as a developer who loves to build innovative products, and it's a feature I'm incredibly proud to have on my site.
