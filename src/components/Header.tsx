@@ -9,21 +9,11 @@ import ThemeToggleButton from './ThemeToggleButton';
 const Header = () => {
   const pathname = usePathname();
 
-  const getCurrentPageTitle = () => {
-    if (pathname === '/') return 'Home';
-    if (pathname.startsWith('/services')) return 'Services';
-    if (pathname.startsWith('/blog')) return 'Journal';
-    if (pathname.startsWith('/projects')) return 'Case Study';
-    return 'Portfolio';
-  };
-
-  const pageTitle = getCurrentPageTitle();
-
   return (
     <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200 dark:bg-gray-900/80 dark:border-gray-800">
       <nav className="max-w-4xl mx-auto px-4 md:px-8 py-3 flex justify-between items-center">
         
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-3">
             <Image 
               src="/logo.png"
@@ -37,39 +27,30 @@ const Header = () => {
             </span>
           </Link>
           
-          <span className="text-gray-300 font-light dark:text-gray-700">|</span>
-          <span className="text-md font-semibold text-indigo-600 dark:text-indigo-400">{pageTitle}</span>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-3 text-sm font-medium">
-            <Link 
-              href="/" 
-              className={`transition-colors ${pathname === '/' ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400'}`}
-            >
-              HOME
-            </Link>
-            
-            <span className="text-gray-300 dark:text-gray-700">|</span>
-
-            {/* Added the new Services link */}
+          <div className="hidden sm:flex items-center gap-4 text-sm font-medium">
             <Link 
               href="/services" 
               className={`transition-colors ${pathname.startsWith('/services') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400'}`}
             >
-              SERVICES
+              Services
             </Link>
-
-            <span className="text-gray-300 dark:text-gray-700">|</span>
-
             <Link 
               href="/blog" 
               className={`transition-colors ${pathname.startsWith('/blog') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400'}`}
             >
-              JOURNAL
+              Journal
             </Link>
           </div>
+        </div>
+
+        <div className="flex items-center gap-4">
           <ThemeToggleButton />
+          <Link 
+            href="/hire-me" 
+            className="inline-block bg-indigo-600 text-white font-bold py-2 px-5 rounded-lg hover:bg-indigo-700 transition-colors duration-300 shadow-md text-sm"
+          >
+            Hire Me
+          </Link>
         </div>
       </nav>
     </header>
