@@ -9,6 +9,7 @@ import ProjectCard from "./ProjectCard";
 import AnimatedSection from "./AnimatedSection";
 import SkillsGrid from "./SkillsGrid";
 import TestimonialCard from "./TestimonialCard";
+import LazyLoadWrapper from "./LazyLoadWrapper"; // 1. Import the new component
 import {
   socialLinks,
   professionalSummary,
@@ -25,7 +26,6 @@ const DownloadResumeButton = dynamic(() => import('./resume/DownloadResumeButton
   loading: () => <p className="inline-block bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg shadow-lg">Loading...</p>
 });
 
-// This component now correctly accepts the introductionVideo prop
 export default function HomePageClient({ 
   gitHubActivityCard,
   creatorSpotlight,
@@ -38,6 +38,7 @@ export default function HomePageClient({
   return (
     <section className="max-w-4xl mx-auto pt-16">
       
+      {/* These sections are "above the fold" and will load immediately */}
       <section className="mb-10">
         <Image 
           src="/hero-banner.jpg"
@@ -79,86 +80,110 @@ export default function HomePageClient({
         </blockquote>
       </section>
 
-      <AnimatedSection>
-        <div className="mb-10">
-          {creatorSpotlight}
-        </div>
-      </AnimatedSection>
+      {/* --- LAZY LOADED SECTIONS START HERE --- */}
+      {/* 2. Wrap all "below the fold" sections with the LazyLoadWrapper */}
 
-      <AnimatedSection>
-        <Section title="Professional Summary">
-          <p>{professionalSummary}</p>
-        </Section>
-      </AnimatedSection>
+      <LazyLoadWrapper minHeight="400px">
+        <AnimatedSection>
+          <div className="mb-10">
+            {creatorSpotlight}
+          </div>
+        </AnimatedSection>
+      </LazyLoadWrapper>
 
-      {/* The new Introduction Video section is correctly placed here */}
-      <AnimatedSection>
-        {introductionVideo}
-      </AnimatedSection>
+      <LazyLoadWrapper>
+        <AnimatedSection>
+          <Section title="Professional Summary">
+            <p>{professionalSummary}</p>
+          </Section>
+        </AnimatedSection>
+      </LazyLoadWrapper>
+
+      <LazyLoadWrapper>
+        <AnimatedSection>
+          {introductionVideo}
+        </AnimatedSection>
+      </LazyLoadWrapper>
       
-      <AnimatedSection>
-        <div className="mb-10">
-          {gitHubActivityCard}
-        </div>
-      </AnimatedSection>
+      <LazyLoadWrapper>
+        <AnimatedSection>
+          <div className="mb-10">
+            {gitHubActivityCard}
+          </div>
+        </AnimatedSection>
+      </LazyLoadWrapper>
 
-      <AnimatedSection>
-        <Section title="Technical Skills">
-          <SkillsGrid />
-        </Section>
-      </AnimatedSection>
+      <LazyLoadWrapper>
+        <AnimatedSection>
+          <Section title="Technical Skills">
+            <SkillsGrid />
+          </Section>
+        </AnimatedSection>
+      </LazyLoadWrapper>
 
-      <AnimatedSection>
-        <Section title="Projects">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} />
-          ))}
-        </Section>
-      </AnimatedSection>
+      <LazyLoadWrapper>
+        <AnimatedSection>
+          <Section title="Projects">
+            {projects.map((project, index) => (
+              <ProjectCard key={index} project={project} />
+            ))}
+          </Section>
+        </AnimatedSection>
+      </LazyLoadWrapper>
 
-      <AnimatedSection>
-        <Section title="Testimonials">
-          {testimonials.map((testimonial, index) => (
-            <TestimonialCard key={index} testimonial={testimonial} />
-          ))}
-        </Section>
-      </AnimatedSection>
+      <LazyLoadWrapper>
+        <AnimatedSection>
+          <Section title="Testimonials">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard key={index} testimonial={testimonial} />
+            ))}
+          </Section>
+        </AnimatedSection>
+      </LazyLoadWrapper>
+      
+      <LazyLoadWrapper>
+        <AnimatedSection>
+          <Section title="Experience">
+            {experience.map((exp, index) => (
+              <div key={index} className="mb-4">
+                <h3 className="font-bold text-lg">{exp.role}</h3>
+                <p className="font-semibold">{exp.company} ({exp.duration})</p>
+                <p className="text-sm text-gray-600 mb-1">{exp.project}</p>
+                <p>{exp.description}</p>
+              </div>
+            ))}
+          </Section>
+        </AnimatedSection>
+      </LazyLoadWrapper>
 
-      <AnimatedSection>
-        <Section title="Experience">
-          {experience.map((exp, index) => (
-            <div key={index} className="mb-4">
-              <h3 className="font-bold text-lg">{exp.role}</h3>
-              <p className="font-semibold">{exp.company} ({exp.duration})</p>
-              <p className="text-sm text-gray-600 mb-1">{exp.project}</p>
-              <p>{exp.description}</p>
-            </div>
-          ))}
-        </Section>
-      </AnimatedSection>
+      <LazyLoadWrapper>
+        <AnimatedSection>
+          <Section title="Education">
+            <p><strong>{education.degree}</strong></p>
+            <p>{education.institution}</p>
+          </Section>
+        </AnimatedSection>
+      </LazyLoadWrapper>
 
-      <AnimatedSection>
-        <Section title="Education">
-          <p><strong>{education.degree}</strong></p>
-          <p>{education.institution}</p>
-        </Section>
-      </AnimatedSection>
+      <LazyLoadWrapper>
+        <AnimatedSection>
+          <Section title="Certifications">
+            <ul className="list-disc list-inside">
+              {certifications.map(cert => <li key={cert}>{cert}</li>)}
+            </ul>
+          </Section>
+        </AnimatedSection>
+      </LazyLoadWrapper>
 
-      <AnimatedSection>
-        <Section title="Certifications">
-          <ul className="list-disc list-inside">
-            {certifications.map(cert => <li key={cert}>{cert}</li>)}
-          </ul>
-        </Section>
-      </AnimatedSection>
-
-      <AnimatedSection>
-        <Section title="Soft Skills & Achievements">
-          <ul className="list-disc list-inside">
-            {achievements.map(ach => <li key={ach}>{ach}</li>)}
-          </ul>
-        </Section>
-      </AnimatedSection>
+      <LazyLoadWrapper>
+        <AnimatedSection>
+          <Section title="Soft Skills & Achievements">
+            <ul className="list-disc list-inside">
+              {achievements.map(ach => <li key={ach}>{ach}</li>)}
+            </ul>
+          </Section>
+        </AnimatedSection>
+      </LazyLoadWrapper>
 
     </section>
   );
