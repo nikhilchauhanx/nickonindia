@@ -52,7 +52,6 @@ export default async function ProjectPage({ params }: { params: { slug: string }
           <p className="text-lg font-semibold text-indigo-700 dark:text-indigo-400">{stack}</p>
         </header>
 
-        {/* This is the new Interactive Demo section. It only shows for the Xenzy project. */}
         {slug === 'xenzy-thrift-store' && (
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-4 dark:text-gray-100">Interactive Live Demo</h2>
@@ -98,13 +97,17 @@ export default async function ProjectPage({ params }: { params: { slug: string }
           </section>
         </article>
 
-        <footer className="mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold mb-4 dark:text-gray-100">Project Links</h3>
-            <div className="flex items-center gap-6">
-                <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors duration-300 shadow-lg dark:bg-indigo-500 dark:hover:bg-indigo-600">
+        {/* --- UPGRADED FOOTER WITH CLIENT CTA --- */}
+        <footer className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-center">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Have a Similar Project?</h3>
+            <Link href="/hire-me" className="inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 transition-colors duration-300 shadow-lg dark:bg-indigo-500 dark:hover:bg-indigo-600">
+                Let's Talk
+            </Link>
+            <div className="mt-8 flex justify-center gap-6">
+                <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-indigo-600 font-semibold hover:underline transition-colors dark:text-gray-400 dark:hover:text-indigo-400">
                     View Live Demo
                 </a>
-                <a href={repoUrl} target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-indigo-600 font-semibold hover:underline transition-colors dark:text-gray-400 dark:hover:text-indigo-400">
+                <a href={repoUrl} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-indigo-600 font-semibold hover:underline transition-colors dark:text-gray-400 dark:hover:text-indigo-400">
                     GitHub Repository
                 </a>
             </div>
