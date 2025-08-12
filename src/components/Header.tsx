@@ -22,7 +22,6 @@ const Header = () => {
       <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200 dark:bg-gray-900/80 dark:border-gray-800">
         <nav className="max-w-4xl mx-auto px-4 md:px-8 py-3 flex justify-between items-center">
           
-          {/* Left Side: Logo & Brand */}
           <Link href="/" className="flex items-center gap-3">
             <Image 
               src="/logo.png"
@@ -36,10 +35,13 @@ const Header = () => {
             </span>
           </Link>
           
-          {/* Center: Desktop Navigation */}
           <div className="hidden sm:flex items-center gap-4 text-sm font-medium">
             <Link href="/services" className={`transition-colors ${pathname.startsWith('/services') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400'}`}>
               Services
+            </Link>
+            {/* Added the new Projects link */}
+            <Link href="/projects" className={`transition-colors ${pathname.startsWith('/projects') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400'}`}>
+              Projects
             </Link>
             <Link href="/blog" className={`transition-colors ${pathname.startsWith('/blog') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400'}`}>
               Journal
@@ -49,7 +51,6 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Right Side: Actions */}
           <div className="flex items-center gap-2">
             <ThemeToggleButton />
             <div className="hidden sm:block">
@@ -57,7 +58,6 @@ const Header = () => {
                 Hire Me
               </Link>
             </div>
-            {/* Hamburger Menu Button (only on mobile) */}
             <div className="sm:hidden">
               <button onClick={() => setIsMenuOpen(true)} className="p-2" aria-label="Open menu">
                 <FaBars className="text-xl" />
@@ -77,6 +77,7 @@ const Header = () => {
         <nav className="flex flex-col items-center justify-center h-full gap-8 text-2xl font-bold">
           <Link href="/" className="text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Home</Link>
           <Link href="/services" className="text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Services</Link>
+          <Link href="/projects" className="text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Projects</Link>
           <Link href="/blog" className="text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Journal</Link>
           <Link href="/uses" className="text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Uses</Link>
           <Link href="/hire-me" className="mt-8 inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 transition-colors">

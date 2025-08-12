@@ -9,7 +9,8 @@ import ProjectCard from "./ProjectCard";
 import AnimatedSection from "./AnimatedSection";
 import SkillsGrid from "./SkillsGrid";
 import TestimonialCard from "./TestimonialCard";
-import LazyLoadWrapper from "./LazyLoadWrapper"; // 1. Import the new component
+import Link from "next/link";
+import LazyLoadWrapper from "./LazyLoadWrapper";
 import {
   socialLinks,
   professionalSummary,
@@ -35,6 +36,9 @@ export default function HomePageClient({
   creatorSpotlight: React.ReactNode,
   introductionVideo: React.ReactNode 
 }) {
+  // We'll just feature the first two projects on the homepage
+  const featuredProjects = projects.slice(0, 2);
+
   return (
     <section className="max-w-4xl mx-auto pt-16">
       
@@ -81,7 +85,6 @@ export default function HomePageClient({
       </section>
 
       {/* --- LAZY LOADED SECTIONS START HERE --- */}
-      {/* 2. Wrap all "below the fold" sections with the LazyLoadWrapper */}
 
       <LazyLoadWrapper minHeight="400px">
         <AnimatedSection>
@@ -115,18 +118,25 @@ export default function HomePageClient({
 
       <LazyLoadWrapper>
         <AnimatedSection>
-          <Section title="Technical Skills">
-            <SkillsGrid />
+          <Section title="Featured Projects">
+            <div className="space-y-8">
+              {featuredProjects.map((project, index) => (
+                <ProjectCard key={index} project={project} />
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <Link href="/projects" className="inline-block text-indigo-600 font-bold py-2 px-6 rounded-lg border-2 border-indigo-200 hover:bg-indigo-50 dark:text-indigo-400 dark:border-indigo-500/50 dark:hover:bg-indigo-500/10 transition-colors">
+                View All Projects
+              </Link>
+            </div>
           </Section>
         </AnimatedSection>
       </LazyLoadWrapper>
 
       <LazyLoadWrapper>
         <AnimatedSection>
-          <Section title="Projects">
-            {projects.map((project, index) => (
-              <ProjectCard key={index} project={project} />
-            ))}
+          <Section title="Technical Skills">
+            <SkillsGrid />
           </Section>
         </AnimatedSection>
       </LazyLoadWrapper>
