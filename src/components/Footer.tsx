@@ -37,18 +37,27 @@ const Footer = () => {
 
         {/* Standard Footer Links */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-6 font-medium text-sm">
+          <div className="flex items-center flex-wrap justify-center gap-6 font-medium text-sm">
             <Link href="/" className="text-gray-600 hover:text-indigo-600 transition-colors dark:text-gray-300 dark:hover:text-indigo-400">
               Home
-            </Link>
-            <Link href="/blog" className="text-gray-600 hover:text-indigo-600 transition-colors dark:text-gray-300 dark:hover:text-indigo-400">
-              Journal
             </Link>
             <Link href="/services" className="text-gray-600 hover:text-indigo-600 transition-colors dark:text-gray-300 dark:hover:text-indigo-400">
               Services
             </Link>
+            <Link href="/projects" className="text-gray-600 hover:text-indigo-600 transition-colors dark:text-gray-300 dark:hover:text-indigo-400">
+              Projects
+            </Link>
+            <Link href="/blog" className="text-gray-600 hover:text-indigo-600 transition-colors dark:text-gray-300 dark:hover:text-indigo-400">
+              Journal
+            </Link>
+            <Link href="/uses" className="text-gray-600 hover:text-indigo-600 transition-colors dark:text-gray-300 dark:hover:text-indigo-400">
+              Uses
+            </Link>
+            <Link href="/bio" className="text-gray-600 hover:text-indigo-600 transition-colors dark:text-gray-300 dark:hover:text-indigo-400">
+              Bio
+            </Link>
           </div>
-          <div className="text-center text-gray-500 text-xs dark:text-gray-400">
+          <div className="text-center text-gray-500 text-xs dark:text-gray-400 mt-6 sm:mt-0">
             <p>© {new Date().getFullYear()} Nikhil Chauhan (nickonindia)</p>
           </div>
         </div>

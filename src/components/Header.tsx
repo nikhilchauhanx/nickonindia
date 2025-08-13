@@ -49,6 +49,9 @@ const Header = () => {
             <Link href="/uses" className={`transition-colors ${pathname.startsWith('/uses') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400'}`}>
               Uses
             </Link>
+            <Link href="/bio" className={`transition-colors ${pathname.startsWith('/bio') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400'}`}>
+              Bio
+            </Link>
           </div>
 
           <div className="flex items-center gap-2">
@@ -80,6 +83,7 @@ const Header = () => {
           <Link href="/projects" className="text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Projects</Link>
           <Link href="/blog" className="text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Journal</Link>
           <Link href="/uses" className="text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Uses</Link>
+          <Link href="/bio" className="text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Bio</Link>
           <Link href="/hire-me" className="mt-8 inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 transition-colors">
             Hire Me
           </Link>
