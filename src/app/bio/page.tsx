@@ -1,24 +1,19 @@
 // src/app/bio/page.tsx
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { bioLinks, BioLink } from '@/lib/bio-data';
-import { FaCheckCircle, FaSun, FaMoon, FaQrcode, FaYoutube, FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
+import { FaCheckCircle, FaYoutube, FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { IconType } from 'react-icons';
+import ThemeToggleClient from '@/components/ThemeToggleClient'; // 1. Import the new Client Component
 
 // --- SERVER-SIDE LOGIC ---
 
-// Filter links based on schedule
 const getVisibleLinks = (): BioLink[] => {
   const now = new Date();
   return bioLinks.filter(link => {
-    if (link.startDate && new Date(link.startDate) > now) {
-      return false; // Link hasn't started yet
-    }
-    if (link.endDate && new Date(link.endDate) < now) {
-      return false; // Link has expired
-    }
+    if (link.startDate && new Date(link.startDate) > now) return false;
+    if (link.endDate && new Date(link.endDate) < now) return false;
     return true;
   });
 };
@@ -28,28 +23,7 @@ export const metadata: Metadata = {
   description: 'All my official links in one place. Connect with me on YouTube, LinkedIn, GitHub, and more.',
 };
 
-// --- CLIENT-SIDE COMPONENTS ---
-
-const ThemeToggle = () => {
-  // In a real app, this would use your ThemeProvider. For this self-contained
-  // component, we'll use a simple localStorage toggle.
-  const toggleTheme = () => {
-    if (document.documentElement.classList.contains('dark')) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    }
-  };
-
-  return (
-    <button onClick={toggleTheme} className="absolute top-4 right-4 p-2 rounded-full bg-gray-200/50 dark:bg-gray-700/50 backdrop-blur-sm">
-      <FaSun className="hidden dark:block" />
-      <FaMoon className="dark:hidden" />
-    </button>
-  );
-};
+// --- CLIENT-SIDE COMPONENTS (for use inside the main page) ---
 
 const LinkCard = ({ link }: { link: BioLink }) => {
   const Icon = link.icon;
@@ -98,11 +72,11 @@ export default function BioPage() {
         className="absolute inset-0 h-1/2 bg-gradient-to-b from-indigo-200 dark:from-indigo-900/50 to-transparent"
         aria-hidden="true"
       />
-      <ThemeToggle />
+      {/* 2. Use the new Client Component here */}
+      <ThemeToggleClient />
       <main className="relative z-10 flex items-center justify-center p-4">
         <div className="w-full max-w-md mx-auto">
           
-          {/* Profile Section */}
           <div className="text-center mb-8 pt-12">
             <Image
               src="/logo.png"
@@ -119,7 +93,6 @@ export default function BioPage() {
             <p className="text-md text-gray-600 dark:text-gray-400">Developer & Creator | Building AI-Powered Apps</p>
           </div>
 
-          {/* Links Section */}
           <div className="space-y-4">
             {visibleLinks.map((link) => {
               if (link.type === 'video') {
@@ -129,7 +102,6 @@ export default function BioPage() {
             })}
           </div>
 
-          {/* Social Icons Footer */}
           <div className="flex justify-center items-center gap-6 mt-8">
             <a href="https://youtube.com/@nickonindia" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-red-600 transition-colors"><FaYoutube className="text-2xl" /></a>
             <a href="https://linkedin.com/in/nickonindia" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-700 transition-colors"><FaLinkedin className="text-2xl" /></a>
