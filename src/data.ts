@@ -26,7 +26,7 @@ interface CaseStudy {
   learnings: string;
 }
 
-interface Project {
+export interface Project { // Made exportable for use in other components if needed
   title: string;
   slug: string;
   stack: string;
@@ -49,7 +49,7 @@ interface Education {
     institution: string;
 }
 
-interface Skill {
+export interface Skill { // Made exportable
   name: string;
   icon: IconType;
 }
@@ -96,7 +96,7 @@ export const technicalSkills: Record<string, Skill[]> = {
     { name: "PostgreSQL", icon: SiPostgresql },
     { name: "MySQL", icon: SiMysql },
     { name: "Supabase", icon: SiSupabase },
-    { name: "RESTful APIs", icon: SiGraphql },
+    { name: "RESTful APIs", icon: SiGraphql }, // Note: Using GraphQL icon for REST as placeholder
     { name: "Prisma", icon: SiPrisma },
   ],
   "Developer Tools & Platforms": [
@@ -108,6 +108,8 @@ export const technicalSkills: Record<string, Skill[]> = {
     { name: "Postman", icon: SiPostman },
   ],
 };
+
+// --- MAIN FEATURED PROJECTS ---
 
 export const projects: Project[] = [
   {
@@ -154,6 +156,26 @@ export const projects: Project[] = [
   },
 ];
 
+// --- NEW CATEGORIZED PROJECTS (Add future projects here) ---
+
+export const nextJsProjects: Project[] = [];
+
+export const reactJsProjects: Project[] = [];
+
+export const htmlCssProjects: Project[] = [
+  // {
+  //   title: "Small Project: JavaScript Calculator",
+  //   slug: "js-calculator",
+  //   stack: "HTML, CSS, Vanilla JavaScript",
+  //   description: "A simple, fully functional calculator built with pure JavaScript to practice DOM manipulation and logic.",
+  //   liveUrl: "#", // Add the live link
+  //   repoUrl: "#", // Add the GitHub link
+  //   caseStudy: null
+  // }
+];
+
+// --- END OF PROJECTS SECTION ---
+
 export const experience: Experience[] = [
   {
     role: "Automation Engineer",
@@ -179,7 +201,7 @@ export const achievements: string[] = [
   "Grew a YouTube channel and Instagram presence (Nickon India) to over 1,000+ followers, developing strong skills in communication and audience engagement.",
   "Consistently contributed to open source with 150+ GitHub commits in 3 months.",
   "Solved 100+ algorithmic problems on LeetCode, enhancing problem-solving skills.",
-  "Effective communicator and collaborative team player, proven through multiple team projects."
+  "Effective communicator and- collaborative team player, proven through multiple team projects."
 ];
 
 export const testimonials: Testimonial[] = [
