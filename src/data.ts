@@ -163,15 +163,27 @@ export const nextJsProjects: Project[] = [];
 export const reactJsProjects: Project[] = [];
 
 export const htmlCssProjects: Project[] = [
-  // {
-  //   title: "Small Project: JavaScript Calculator",
-  //   slug: "js-calculator",
-  //   stack: "HTML, CSS, Vanilla JavaScript",
-  //   description: "A simple, fully functional calculator built with pure JavaScript to practice DOM manipulation and logic.",
-  //   liveUrl: "#", // Add the live link
-  //   repoUrl: "#", // Add the GitHub link
-  //   caseStudy: null
-  // }
+    // --- ADD THIS NEW PROJECT OBJECT ---
+// --- THIS PROJECT IS NOW COMPLETE ---
+  {
+    title: "Signature App",
+    slug: "signature-app",
+    stack: "HTML, CSS, JavaScript (Canvas)",
+    description: "A web app that allows users to draw, customize, and save their digital signature using the HTML Canvas element.",
+    liveUrl: "https://signatureapp-three.vercel.app/",
+    repoUrl: "https://github.com/nikhilchauhanx/signatureapp", // 👈 I'VE ADDED YOUR GITHUB LINK
+    caseStudy: null 
+  },
+  
+  {
+    title: "JavaScript Calculator",
+    slug: "js-calculator",
+    stack: "HTML, CSS, Vanilla JavaScript",
+    description: "A simple, fully functional calculator built with pure JavaScript to practice DOM manipulation and logic.",
+    liveUrl: "#", // Add link when ready
+    repoUrl: "#", // Add link when ready
+    caseStudy: null
+  }
 ];
 
 // --- END OF PROJECTS SECTION ---
